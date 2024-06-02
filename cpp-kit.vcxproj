@@ -1,0 +1,154 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup Label="ProjectConfigurations">
+    <ProjectConfiguration Include="Debug|x64">
+      <Configuration>Debug</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+    <ProjectConfiguration Include="Release|x64">
+      <Configuration>Release</Configuration>
+      <Platform>x64</Platform>
+    </ProjectConfiguration>
+  </ItemGroup>
+  <PropertyGroup Label="Globals">
+    <ProjectGuid>{B12702AD-ABFB-343A-A199-8E24837244A3}</ProjectGuid>
+    <Keyword>QtVS_v301</Keyword>
+    <WindowsTargetPlatformVersion>10.0.17763.0</WindowsTargetPlatformVersion>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.Default.props" />
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'" Label="Configuration">
+    <ConfigurationType>Application</ConfigurationType>
+    <PlatformToolset>v141</PlatformToolset>
+  </PropertyGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.props" />
+  <PropertyGroup Condition="'$(QtMsBuild)'=='' or !Exists('$(QtMsBuild)\qt.targets')">
+    <QtMsBuild>$(MSBuildProjectDirectory)\QtMsBuild</QtMsBuild>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <OutDir>$(SolutionDir)$(Platform)\$(Configuration)\</OutDir>
+  </PropertyGroup>
+  <Target Name="QtMsBuildNotFound" BeforeTargets="CustomBuild;ClCompile" Condition="!Exists('$(QtMsBuild)\qt.targets') or !Exists('$(QtMsBuild)\qt.props')">
+    <Message Importance="High" Text="QtMsBuild: could not locate qt.targets, qt.props; project may not build correctly." />
+  </Target>
+  <ImportGroup Label="ExtensionSettings" />
+  <ImportGroup Label="Shared" />
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <ImportGroup Label="PropertySheets" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <Import Project="$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props" Condition="exists('$(UserRootDir)\Microsoft.Cpp.$(Platform).user.props')" Label="LocalAppDataPlatform" />
+  </ImportGroup>
+  <PropertyGroup Label="UserMacros" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt_defaults.props')">
+    <Import Project="$(QtMsBuild)\qt_defaults.props" />
+  </ImportGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <QtInstall>Qt5.13.1</QtInstall>
+    <QtModules>core</QtModules>
+  </PropertyGroup>
+  <PropertyGroup Label="QtSettings" Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <QtInstall>Qt5.13.1</QtInstall>
+    <QtModules>core</QtModules>
+  </PropertyGroup>
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.props')">
+    <Import Project="$(QtMsBuild)\qt.props" />
+  </ImportGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <Optimization>Disabled</Optimization>
+      <DebugInformationFormat>ProgramDatabase</DebugInformationFormat>
+      <RuntimeLibrary>MultiThreadedDebugDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeaderFile>PcHeader.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>./source/math/perceptron;./source/math/quaternion;./source/math/algebra;./source/math;./source/system/wrapper;./source/system/tracer;./source/system;./source/core;./source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <GenerateDebugInformation>true</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Release|x64'">
+    <ClCompile>
+      <MultiProcessorCompilation>true</MultiProcessorCompilation>
+      <DebugInformationFormat />
+      <RuntimeLibrary>MultiThreadedDLL</RuntimeLibrary>
+      <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
+      <PrecompiledHeaderFile>PcHeader.h</PrecompiledHeaderFile>
+      <AdditionalIncludeDirectories>./source/math/perceptron;./source/math/quaternion;./source/math/algebra;./source/math;./source/system/wrapper;./source/system/tracer;./source/system;./source/core;./source;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
+    </ClCompile>
+    <Link>
+      <SubSystem>Console</SubSystem>
+      <OutputFile>$(OutDir)\$(ProjectName).exe</OutputFile>
+      <GenerateDebugInformation>false</GenerateDebugInformation>
+    </Link>
+  </ItemDefinitionGroup>
+  <ItemGroup>
+    <ClCompile Include="main.cpp" />
+    <ClCompile Include="source\core\StringCore.cpp" />
+    <ClCompile Include="source\math\perceptron\MultilayerPerceptron.cpp" />
+    <ClCompile Include="source\math\quaternion\Quaternion.cpp" />
+    <ClCompile Include="source\math\quaternion\QuaternionTool.cpp" />
+    <ClCompile Include="source\PcHeader.cpp">
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">Create</PrecompiledHeader>
+      <PrecompiledHeaderFile Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">PcHeader.h</PrecompiledHeaderFile>
+      <PrecompiledHeader Condition="'$(Configuration)|$(Platform)'=='Release|x64'">Create</PrecompiledHeader>
+    </ClCompile>
+    <ClCompile Include="source\serializer\container-file\ContainerFile.cpp" />
+    <ClCompile Include="source\system\tracer\SystemTrace.cpp" />
+    <ClCompile Include="source\system\tracer\Trace.cpp" />
+    <ClCompile Include="source\system\tracer\TraceCStd.cpp" />
+    <ClCompile Include="source\system\tracer\TraceMath.cpp" />
+    <ClCompile Include="source\system\tracer\TraceSys.cpp" />
+    <ClCompile Include="source\system\tracer\TraceWin.cpp" />
+    <ClCompile Include="source\system\wrapper\WrapperCStd.cpp" />
+    <ClCompile Include="source\system\wrapper\WrapperWin.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="source\core\CoreMacros.h" />
+    <ClInclude Include="source\core\DynamicArray.h" />
+    <ClInclude Include="source\core\DynamicField.h" />
+    <ClInclude Include="source\core\MathCore.h" />
+    <ClInclude Include="source\core\StringCore.h" />
+    <ClInclude Include="source\core\CoreTypes.h" />
+    <ClInclude Include="source\core\Version.h" />
+    <ClInclude Include="source\math\algebra\Algebra.h" />
+    <ClInclude Include="source\math\algebra\AlgebraTools.h" />
+    <ClInclude Include="source\math\algebra\AlgebraTools2D.h" />
+    <ClInclude Include="source\math\algebra\AlgebraTools3D.h" />
+    <ClInclude Include="source\math\Mathematics.h" />
+    <ClInclude Include="source\math\perceptron\MultilayerPerceptron.h" />
+    <ClInclude Include="source\math\quaternion\Quaternion.h" />
+    <ClInclude Include="source\math\quaternion\QuaternionTool.h" />
+    <ClInclude Include="source\PcHeader.h" />
+    <ClInclude Include="source\serializer\container-file\ContainerFile.h" />
+    <ClInclude Include="source\system\System.h" />
+    <ClInclude Include="source\system\tracer\SystemTrace.h" />
+    <ClInclude Include="source\system\tracer\Trace.h" />
+    <ClInclude Include="source\system\tracer\TraceCStd.h" />
+    <ClInclude Include="source\system\tracer\TraceMath.h" />
+    <ClInclude Include="source\system\tracer\TraceSys.h" />
+    <ClInclude Include="source\system\tracer\TraceWin.h" />
+    <ClInclude Include="source\system\wrapper\WrapperCStd.h" />
+    <ClInclude Include="source\system\wrapper\WrapperWin.h" />
+  </ItemGroup>
+  <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
+  <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">
+    <Import Project="$(QtMsBuild)\qt.targets" />
+  </ImportGroup>
+  <ImportGroup Label="ExtensionTargets">
+  </ImportGroup>
+  <ProjectExtensions>
+    <VisualStudio>
+      <UserProperties MocDir=".\GeneratedFiles\$(ConfigurationName)" UicDir=".\GeneratedFiles" RccDir=".\GeneratedFiles" lupdateOptions="" lupdateOnBuild="0" lreleaseOptions="" MocOptions="" />
+    </VisualStudio>
+  </ProjectExtensions>
+</Project>
